@@ -166,7 +166,7 @@ function App() {
 
   const ws = useRef(null);
   useEffect(() => {
-    ws.current = new WebSocket("ws://localhost:8080");
+    ws.current = new WebSocket("ws://5.104.81.194:5000");
     ws.current.onopen = () => console.log("ws opened");
     ws.current.onclose = () => console.log("ws closed");
 
