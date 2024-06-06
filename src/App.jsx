@@ -166,11 +166,7 @@ function App() {
 
   const ws = useRef(null);
   useEffect(() => {
-<<<<<<< HEAD
     ws.current = new WebSocket("ws://5.104.81.194:5000");
-=======
-    ws.current = new WebSocket("wss://5.104.81.194:5000");
->>>>>>> 8993317c158467802cca7f973f553d81fdb5ee84
     ws.current.onopen = () => console.log("ws opened");
     ws.current.onclose = () => console.log("ws closed");
 
@@ -209,7 +205,7 @@ function App() {
           }
         }
         if (dataArray[0] == 'INITIAL_BETS') {
-          setBets((pre) => ([...pre, ...dataArray[1]]))
+          setBets((pre) => ([ ...dataArray[1]]))
         }
 
         if (dataArray[0] == 'INITIAL_threads') {
@@ -384,20 +380,32 @@ function App() {
       <table>
 
         <tr>
+        <th>Date</th>
           <th>Time</th>
+          <th>Round Id</th>
+          <th>Bet</th>
           <th>Crash point</th>
+          <th>Acual Crash point</th>
           <th>Thread</th>
           <th>Output</th>
           <th>Rounds</th>
+          <th>status</th>
         </tr>
 
         {bets.map((element) => (
           <tr>
-            <td>{element.created_at}</td>
+            <td>{element.date}</td>
+            <td>{element.time}</td>
+            <td>{element.round_id}</td>
+            <td>{element.bet}</td>
+
             <td>{element.crash_point}</td>
+            <td>{element.acual_crash_point}</td>
             <td>{element.thread}</td>
             <td>{Math.round(((element.value ) + Number.EPSILON) * 100) / 100}</td>
             <td>{element.rounds}</td>
+            <td>{element.win == 1 ? 'Win' : 'Lost'}</td>
+
           </tr>
         ))}
 
